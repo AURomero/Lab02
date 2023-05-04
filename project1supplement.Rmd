@@ -1,0 +1,173 @@
+---
+title: 'Stats 250: Project #1 Supplement'
+author: "Replace this text with your name"
+date: "Wednesday, May 10th"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+### Instructions
+
+Instead of a lab assignment this week, you will be completing your analysis for the first Project assignment. Each of the 10 questions will be graded out of 5 points (for a total of 50 points). These questions will be graded for *correctness*. Upon completion, follow the submission instructions at the bottom of this document. We strongly encourage you to work on this assignment with a partner, but everyone must submit their own document to Canvas. 
+
+
+***
+
+
+### Background
+
+TED Talks are recordings of talks given by influential speakers from various fields. Of the hundreds of talks recorded every year, some are more popular than others. What are some characteristics that make some talks more popular than others? 
+
+You are an analyst who is a consumer of TED Talks.  You have spent many hours collecting data on a random sample of TED Talks in order to better understand the characteristics of popular TED Talks.   
+
+**Data Set:** TED
+
+The data set is called TED and contains information on 382 TED Talks.  The variables in the data set are: 
+
+- `occupation`: The occupation of the main speaker (Writer, Artist, Inventor, etc.)
+- `category`: The most common category the talk was identified as (Informative, Funny, etc.)
+- `duration`: Duration of the talk (Short, Medium or Long)
+- `views`: How many times the talk has been viewed
+- `languages`: The number of languages in which the talk is available
+- `comments`: The number of first-level comments made on the talk
+
+Use the following code chunk to read in the data set. 
+
+```{r readProjectData}
+ted <- read.csv("TED.csv")
+```
+
+**Think-Pair-Share #2:** Given this data set, what are some questions that we may wish to answer? 
+
+- Think of one question that involves two categorical variables
+- Think of one question that involves a quantitative and a categorical variable
+
+
+***
+
+
+### Exercises
+
+After reading in the data set above, complete the following exercise. Remember, that this is the Project 1 supplement, hence, each of the 10 questions will be graded for correctness out of 5 points (for a total of 50 points).
+
+> **1.** After reading in the data above, use the `head()` function to preview the data set. Identify all of the quantitative variables and the categoriacl variables and list them below.  
+
+```{r exercise1, error = T}
+# Replace this text with your code!
+
+```
+
+*Answer:* Replace this text with your answer.
+
+
+
+> **2.** Create a histogram of the variable `comments`.  Generate the numerical summaries for the variable `comments`. Which measure of center should be reported and why? Provide the value and include units. 
+
+```{r exercise2a, error = T}
+# Replace this text with your code!
+
+```
+
+```{r exercise2b, error = T}
+# Replace this text with your code!
+
+```
+
+*Answer:* Replace this text with your answer.
+
+
+
+> **3.** Generate a question that involves two *categorical* variables of your choice. You will analyze the data and answer this question over the next three exercises. Note: your categorical variable should play the role of the response variable. 
+
+*Answer:* Replace this text with your answer.
+
+
+
+> **4.** Create a grouped bar chart that could be used to help answer your proposed question from Exercise 3. Briefly comment on the plot (1 - 2 sentences). Reminder: we have included example code for this function at the bottom of the lab02resources file.  
+
+```{r exercise4, error = T}
+# Replace this text with your code!
+
+```
+
+*Answer:* Replace this text with your answer.
+
+
+
+> **5.** Create a two-way frequency table for your chosen variables. It may help to include the row and column totals. Calculate/provide at least *three* conditional probabilities that will help you answer your proposed question from Exercise 3.
+
+```{r exercise5, error = T}
+# Replace this text with your code!
+
+```
+
+*Answer:* Replace this text with your answer.
+
+
+
+> **6.** Using your analysis from the previous two exercises, answer your proposed question from Exercise 3. Explain your answer.  
+
+*Answer:* Replace this text with your answer.
+
+
+
+> **7.** Generate a question that involves a *quantitative* variable and a *categorical* variable of your choice. You will analyze the data and answer this question over the next three exercises. Note: your quanitative variable should play the role of the response variable.
+
+*Answer:* Replace this text with your answer.
+
+
+
+> **8.** Create a side-by-side boxplot that could be used to help answer your proposed question from Exercise 7. Briefly comment on the plot (1 - 2 sentences).
+
+```{r exercise8, error = T}
+# Replace this text with your code!
+
+```
+
+*Answer:* Replace this text with your answer.
+
+
+
+> **9.** Calculate the quantiles of your quantitative response across the groups of the categorical variable. How do the medians compare? Note: remember that the `aggregate()` function can be a little finicky. If you run your code and no output appears, try knitting the document to find the desired values! 
+
+```{r exercise9, error = T}
+# Replace this text with your code!
+
+```
+
+*Answer:* Replace this text with your answer.
+
+
+
+> **10.** Using your analysis from the previous two exercises, answer your proposed question from Exercise 7. Explain your answer.  
+
+*Answer:* Replace this text with your answer.
+
+
+
+***
+
+
+### Submission Instructions
+
+Once you have finished, follow the instructions below to submit your work.
+
+1. At the top of the document, update the `author` field. Do not change anything else at the top of the document.
+
+2. Click the Knit button to create an HTML file of your work.
+
+3. In the Files pane (bottom right window), check the box next to `project1supplement.html`.
+
+4. In the Files pane, click on the gear icon (More) and select "Export..."  
+
+5. Do not change the file name (`project1supplement.html`). Click Download and save the file to your computer. 
+
+6. On the Stats 250 Canvas site, navigate to the Project #1 Supplement Work assignment. 
+
+7. Upload your saved `project1supplement.html` file. 
+
+8. Click "Submit Assignment". Congratulations, you are done with the fist part of Project #1! Note: there will be no file submission for the Lab 2 assignment on Canvas.

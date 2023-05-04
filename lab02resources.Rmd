@@ -1,0 +1,239 @@
+---
+title: 'Stats 250: Lab 2 Resources'
+author: "Instructional Team"
+date: "Wednesday, May 10th"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_collapsed: true
+    theme: lumen
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Lab Summary
+
+### Learning Objectives
+1. Calculate numerical summaries
+2. Make a histogram 
+3. Make a boxplot
+4. Make a side-by-side boxplot (plot by group)
+5. Calculate numerical summaries by group
+
+### Functions
+1. `summary()`
+2. `quantiles()`
+3. `mean()`
+4. `hist()`
+5. `boxplot()`
+6. `aggregate()`
+
+
+***
+
+
+## Coding Examples
+
+### Data 
+
+We are back to hanging out with our penguin friends. Run the following code chunk to read in the penguins data set.  
+
+```{r readpenguins}
+penguins <- read.csv("penguins.csv")
+```
+
+You should see the `penguins` data set in your environment (top right pane). 
+
+
+### Numerical Summaries
+
+For quantitative variables, we can use R to summarize the data numerically. There are an abundance of helpful functions shown below using the variable `body_mass_g`. 
+
+```{r quantileExample}
+quantile(penguins$body_mass_g)
+```
+
+```{r meanExample}
+mean(penguins$body_mass_g)
+```
+
+```{r medianExample}
+median(penguins$body_mass_g)
+```
+
+```{r sdExample}
+sd(penguins$body_mass_g)
+```
+
+```{r IQRExample}
+IQR(penguins$body_mass_g)
+```
+
+```{r minmaxrangeExample}
+min(penguins$body_mass_g)
+max(penguins$body_mass_g)
+range(penguins$body_mass_g)
+```
+
+```{r summaryExample}
+summary(penguins$body_mass_g)
+```
+
+**Demo #1**: Calculate the quantiles for the variable `flipper_length_mm`. 
+
+```{r demo1, error = T}
+# Replace this comment with your code
+
+```
+
+Think About It: What value completes the following statement? About 25% of the observed penguins have a flipper length at least ___ mm. 
+
+
+### Histograms
+
+Histograms help visualize the distribution of a quantitative variable. They are wonderful for checking *shape*!
+
+To create a histogram in R, we use the `hist()` function. Let's create a histogram for the variable body mass. Remember, we will always be looking for appropriate labels and a proper title.
+
+```{r histogramExample}
+hist(penguins$body_mass_g,
+     main = "Histogram of Penguin Body Mass",
+     xlab = "Body Mass (in grams)")
+```
+
+Think About It: Based on the histogram, what is the more appropriate measure of center? 
+
+**Demo #2**: Create a histogram for penguin flipper lengths. Be sure to include an appropriate x-axis label and title. Add some color to your plot if you'd like!  
+
+```{r demo2, error = T}
+# Replace this text with your code
+
+``` 
+
+**Think-Pair-Share #1:** The distribution for penguins flipper lengths is bimodal. What might cause this distribution to have two peaks? Think about the other variables in the data set. What graph could help us check this theory?
+
+Note: you are not required to answer these questions in your R document, but it may be helpful later if you do. Feel free to jot notes down!
+
+
+### Boxplots
+
+Another great graph for quantitative variables is a boxplot. It helps visualize the five-number summary. We cannot, however, use a boxplot to determine shape!
+
+To create a boxplot in R, we use the `boxplot()` function. As we did with histograms, we should also provide additional arguments for the title and label (but this time we need to update the y-axis label instead of the x-axis label). 
+
+```{r boxplotExample}
+boxplot(penguins$body_mass_g,
+        main = "Boxplot of Penguin Body Mass",
+        ylab = "Body Mass (in grams)")
+```
+
+Instead of eyeballing the values from the boxplot, it's good practice to compute the exact numerical summaries (using the functions from earlier).  
+
+**Demo #3**: Create a boxplot for the penguin flipper lengths. Include an appropriate y-axis label and title. 
+
+```{r demo3, error = T}
+# Replace this text with your code
+
+```
+
+Think About It: Can you tell from the boxplot alone that this distribution is bimodal (as we discovered in Demo #2)? 
+
+
+### Side-by-Side Boxplots
+
+One major benefit of a boxplot, is that they are great for comparing a quantitative variable across the groups of a categorical variable. 
+
+To create a side-by-side boxplot in R, we include a second variable (and labels for both axes). Note: the quantitative variable should always go first, followed by the categorical variable.
+
+```{r sideBySideBoxplotExample}
+boxplot(penguins$body_mass_g ~ penguins$sex,
+        main = "Boxplots of Penguin Body Mass by Sex",
+        ylab = "Body Mass (in grams)",
+        xlab = "Sex")
+```
+
+Notice the `~` (tilde) in the code here. Think of this as the word "by". We are making a boxplot of "body mass *by* sex". 
+
+Be careful with the order! What happens if we put the categorical variable first? 
+
+```{r sideBySideBoxplotError, error = T}
+boxplot(penguins$sex ~ penguins$body_mass_g,
+        main = "Boxplots of Penguin Body Mass by Sex",
+        ylab = "Body Mass (in grams)",
+        xlab = "Sex")
+```
+
+Just like the bar charts we created in Lab 1, we can add colors by using the `col` argument. For a list of available colors, check out the following link: https://tinyurl.com/rcoloroptions
+
+```{r boxplotWithColor}
+boxplot(penguins$body_mass_g ~ penguins$sex,
+        main = "Boxplots of Penguin Body Mass by Sex",
+        ylab = "Body Mass (in grams)",
+        xlab = "Sex",
+        col = c("blanchedalmond", "olivedrab"))
+```
+
+**Demo #4**: Create a side-by-side boxplot of the penguin flipper length by species. Be sure to include appropriate labels and a title. Feel free to add some color!
+
+```{r demo4, error = T}
+# Replace this text with your code
+
+```
+
+
+### Numerical Summaries by Group
+
+We can also calculate numerical summaries for a quantitative variable across the groups of a categorical variable. 
+
+Suppose we want to calculate the mean body mass for penguins *by* sex (i.e. we want to calculate the average body mass for female and male penguins). We can do this using the `aggregate()` function. This function is a little bit different than other functions we have used so far -- so be careful!
+
+```{r aggregate}
+aggregate(body_mass_g ~ sex, 
+          data = penguins, 
+          FUN = mean)
+```
+
+*Note:* we did not include the data set name (penguins) with each of the variables. Instead, this function takes an additional argument called `data` and this is where we type in the name of the data set.
+
+The last argument (`FUN`) is short for "function". Input whichever numerical summary you wish to calculate (quantile, median, mean, min, max, sd, IQR, etc.). 
+
+Once again, the order is quantitative variable, then categorical variable.
+
+**Demo #5**: Calculate the quantiles of flipper length across the various penguin species. Note: if you run your code and no output appears, try knitting the document! This function can be a little finicky sometimes (and sometimes the values only show up in the html file). 
+
+```{r demo5, error = T}
+# Replace this text with your code
+
+```
+
+
+### Reminder: Lab 1 Functions
+
+In Lab 1, we learned how to summarize and visualize the relationship of two categorical variables through two-way frequency tables and group bar charts. We have included code chunks below as helpful reminders. 
+
+```{r twoWayTable}
+addmargins(table(penguins$species, penguins$island))
+```
+
+```{r groupedBarPlot}
+
+barplot(
+  table(penguins$species, penguins$island),
+  beside = TRUE,
+  legend = TRUE,
+  main = "Distribution of Species Plotted by Island",
+  xlab = "Island",
+  ylab = "Frequency",
+  col = c("orange", "purple", "darkgreen")
+  )
+
+```
+
+Those are all the new functions we have for today! Click on the file titled `project1supplement.Rmd` in the bottom right window to open up the assignment for today.
+
+We will read through the background together and jump into our second Think-Pair-Share. 
+
+
